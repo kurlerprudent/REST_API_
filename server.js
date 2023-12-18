@@ -1,11 +1,23 @@
 const express = require('express')
-const server = express()
-const port = 3001
+const mongoose = require('mongoose');
+const app = express()
+const PORT = 3005
 
-server.get('/', (req,res)=>{
-    res.send('My name is Obed')
+app.get('/',(req,res)=> {
+    res.send('Hello there!')
 })
 
-server.listen(port, ()=>{
-    console.log('server started successfully')
+
+
+mongoose.connect('mongodb+srv://prudent:987654321@cluster0.50j4aw5.mongodb.net/CompanyDB?retryWrites=true&w=majority')
+.then(()=>{
+    console.log('HEConnected to MongoDB')
+    app.listen(PORT,()=> {
+        console.log('Server started successfully')
+        })
+   
+}).catch((error)=>{
+    console.log('Error')
 })
+
+
